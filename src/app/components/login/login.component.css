@@ -1,6 +1,10 @@
-.card,
-.img-fluid {
+.card {
   margin: auto;
   width: 50%;
   height: 50%;
+}
+
+.logo{
+  width: 50dp;
+  height: 50dp;
 }
