@@ -18,17 +18,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  sumbit(): void {
-    /*signInWithEmailAndPassword(this, 'proyectoappuerto@gmail.com', 'Best2022')
-      .then((userCredential) => {
-        const user = userCredential.user;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + ': ' + errorMessage);
-      });*/
-  }
+  /*signInWithEmailAndPassword(this, 'proyectoappuerto@gmail.com', 'Best2022')
+    .then((userCredential) => {
+      const user = userCredential.user;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode + ': ' + errorMessage);
+    });*/
 
   send(): any {
     console.log(this.formLogin.value);
