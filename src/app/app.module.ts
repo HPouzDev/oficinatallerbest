@@ -4,8 +4,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
 
 import { AppComponent } from './app.component';
+import { provideFirestore } from '@angular/fire/firestore/firestore.module';
+import { getFirestore } from '@angular/fire/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBYSPYR3fO_mdYncu1nOONXWQT-bWGpeMM',
@@ -20,6 +23,7 @@ const firebaseConfig = {
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule,
     provideFirebaseApp(() => initializeApp({ firebaseConfig })),
     provideAuth(() => getAuth()),
   ],

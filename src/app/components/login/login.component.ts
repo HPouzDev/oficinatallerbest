@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Auth, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { FirebaseApp } from '@angular/fire/app';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +10,10 @@ import {
 })
 export class LoginComponent implements OnInit {
   public formLogin: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {}
+  auth: Auth;
+  constructor(private afApp: FirebaseApp, private formBuilder: FormBuilder) {
+    this.auth = getAuth(this.afApp);
+  }
 
   ngOnInit() {
     this.formLogin = this.formBuilder.group({
@@ -24,17 +22,25 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  /*signInWithEmailAndPassword(this, 'proyectoappuerto@gmail.com', 'Best2022')
-    .then((userCredential) => {
-      const user = userCredential.user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode + ': ' + errorMessage);
-    });*/
-
   send(): any {
     console.log(this.formLogin.value);
+    signInWithEmailAndPassword(this.auth, this.email, this.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + ': ' + errorMessage);
+      });
+  }
+
+  get email() {
+    return this.formLogin.get('email') as FormArray;
+  }
+
+  get password() {
+    return this.formLogin.get('password') as FormArray;
   }
 }
