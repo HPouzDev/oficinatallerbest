@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +19,7 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp({ firebaseConfig })),
     provideAuth(() => getAuth()),
   ],

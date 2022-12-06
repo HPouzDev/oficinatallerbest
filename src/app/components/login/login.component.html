@@ -7,7 +7,7 @@
   <div class="card text-left" style="width: 18rem;">
     <h3 class="titulo-login">Oficina terminal</h3>
     <div class="card-body">
-      <form>
+      <form [formGroup]="formLogin" (submit)="send()">
         <div class="form-floating mb-3">
           <input
             type="email"
@@ -15,6 +15,7 @@
             id="floatingInput"
             placeholder="name@example.com"
             name="email"
+            formContolName="email"
           />
           <label for="floatingInput">Correo</label>
         </div>
@@ -25,12 +26,17 @@
             id="floatingPassword"
             placeholder="Password"
             name="password"
+            formContolName="password"
           />
           <label for="floatingPassword">Contraseña</label>
         </div>
         <hr />
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary" (click)="sumbit()">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="formLogin.invalid"
+          >
             Iniciar sesión
           </button>
         </div>
