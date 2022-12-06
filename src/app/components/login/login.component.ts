@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +16,11 @@ export class LoginComponent implements OnInit {
   public formLogin: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
+
   ngOnInit() {
     this.formLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required, Validators.minLength(6)],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
