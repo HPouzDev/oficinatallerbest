@@ -2,29 +2,21 @@ import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { environment } from '../environments/environment';
 
 //COMPONENTS
 import { LoginComponent } from './components/login/login.component';
 
 //FIREBASE
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyBYSPYR3fO_mdYncu1nOONXWQT-bWGpeMM',
-  authDomain: 'oficinaterminalbest.firebaseapp.com',
-  projectId: 'oficinaterminalbest',
-  storageBucket: 'oficinaterminalbest.appspot.com',
-  messagingSenderId: '712849466662',
-  appId: '1:712849466662:web:d6c8c850888ba68ec98de7',
-};
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    provideFirebaseApp(() => initializeApp({ firebaseConfig })),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   ],
   declarations: [AppComponent, LoginComponent],
