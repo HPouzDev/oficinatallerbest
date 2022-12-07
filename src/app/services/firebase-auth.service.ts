@@ -27,16 +27,16 @@ export class FirebaseAuthService {
     return sendPasswordResetEmail(this.auth, email);
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string, isVisibleAlertErrorLogin: boolean) {
     signInWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
         this.user = userCredential.user;
-        console.log(this.user);
+        isVisibleAlertErrorLogin = false;
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode + ': ' + errorMessage);
+        isVisibleAlertErrorLogin = true;
       });
   }
 }

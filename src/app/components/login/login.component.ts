@@ -9,6 +9,7 @@ import { FirebaseAuthService } from '../../services/firebase-auth.service';
 })
 export class LoginComponent implements OnInit {
   public formLogin: FormGroup;
+  isVisibleAlertErrorLogin: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private firebaseAuth: FirebaseAuthService
@@ -23,7 +24,11 @@ export class LoginComponent implements OnInit {
 
   send(): any {
     console.log('Email: ' + this.email.value + ', Pass:' + this.password.value);
-    this.firebaseAuth.login(this.email.value, this.password.value);
+    this.firebaseAuth.login(
+      this.email.value,
+      this.password.value,
+      this.isVisibleAlertErrorLogin
+    );
   }
 
   get email() {
