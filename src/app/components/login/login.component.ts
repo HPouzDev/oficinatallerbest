@@ -9,8 +9,10 @@ import { FirebaseAuthService } from '../../services/firebase-auth.service';
 })
 export class LoginComponent implements OnInit {
   public formLogin: FormGroup;
-  public firebaseAuth: FirebaseAuthService;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private firebaseAuth: FirebaseAuthService
+  ) {}
 
   ngOnInit() {
     this.formLogin = this.formBuilder.group({
