@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { FirebaseApp } from '@angular/fire/app';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+//FIREBASE
+import { Auth, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +10,8 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   public formLogin: FormGroup;
-  auth: Auth;
-  constructor(private afApp: FirebaseApp, private formBuilder: FormBuilder) {
-    this.auth = getAuth(this.afApp);
-  }
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.formLogin = this.formBuilder.group({
@@ -24,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   send(): any {
     console.log(this.formLogin.value);
-    signInWithEmailAndPassword(this.auth, this.email, this.password)
+    signInWithEmailAndPassword(getAuth, this.email, this.password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
