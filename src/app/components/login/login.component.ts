@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-//FIREBASE
-import { Auth, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +9,7 @@ import { Auth, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
 })
 export class LoginComponent implements OnInit {
   public formLogin: FormGroup;
-
+  public firebaseAuth: FirebaseAuthService;
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -21,17 +20,8 @@ export class LoginComponent implements OnInit {
   }
 
   send(): any {
-    console.log(this.formLogin.value);
-    signInWithEmailAndPassword(getAuth, this.email, this.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + ': ' + errorMessage);
-      });
+    console.log('Email: ' + this.email.value + ', Pass:' + this.password.value);
+    this.firebaseAuth.login(this.email.value, this.password.value);
   }
 
   get email() {
