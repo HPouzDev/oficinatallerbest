@@ -1,11 +1,11 @@
 export const environment = {
   firebase: {
-    projectId: 'gdi-firebase-auth',
-    appId: '1:776626994933:web:e6c3664546d6901e8f8fbc',
-    storageBucket: 'gdi-firebase-auth.appspot.com',
-    apiKey: 'AIzaSyBabwcqhlQX3KY0xCrptT9liGpLuKJlzvs',
-    authDomain: 'gdi-firebase-auth.firebaseapp.com',
-    messagingSenderId: '776626994933',
+    apiKey: 'AIzaSyBYSPYR3fO_mdYncu1nOONXWQT-bWGpeMM',
+    authDomain: 'oficinaterminalbest.firebaseapp.com',
+    projectId: 'oficinaterminalbest',
+    storageBucket: 'oficinaterminalbest.appspot.com',
+    messagingSenderId: '712849466662',
+    appId: '1:712849466662:web:d6c8c850888ba68ec98de7',
   },
-  production: false
+  production: false,
 };
