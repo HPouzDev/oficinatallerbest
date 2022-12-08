@@ -13,7 +13,8 @@ import {
 export class FirebaseAuthService {
   constructor(private auth: Auth) {}
 
-  public user: any;
+  user: any;
+  isValidUser: boolean;
 
   getFirebaseUser(): any {
     return this.user;
@@ -27,16 +28,16 @@ export class FirebaseAuthService {
     return sendPasswordResetEmail(this.auth, email);
   }
 
-  login(email: string, password: string, isVisibleAlertErrorLogin: boolean) {
+  login(email: string, password: string) {
     signInWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
         this.user = userCredential.user;
-        isVisibleAlertErrorLogin = false;
+        this.isValidUser = true;
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        isVisibleAlertErrorLogin = true;
+        this.isValidUser = false;
       });
   }
 }
