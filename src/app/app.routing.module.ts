@@ -7,7 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   declarations: [],
   imports: [
     RouterModule.forRoot([
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: DashboardComponent },
       {
         path: 'dashboard',
         component: DashboardComponent,

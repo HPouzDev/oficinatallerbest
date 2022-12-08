@@ -16,7 +16,7 @@
             name="email"
             formControlName="email"
           />
-          <label for="email">Correo</label>
+          <label for="email">Email</label>
         </div>
         <div class="form-floating">
           <input
@@ -31,17 +31,23 @@
         <hr />
         <div class="d-grid gap-2">
           <button
-            type="submit"
             class="btn btn-primary"
-            [disabled]="formLogin.invalid"
+            type="submit"
+            [disabled]="formLogin.invalid && !showProgress"
           >
-            Iniciar sesión
+            <span
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+              *ngIf="showProgress"
+            ></span>
+            <span *ngIf="!showProgress">Iniciar sesión</span>
           </button>
         </div>
       </form>
     </div>
   </div>
   <div class="alert alert-danger" role="alert" *ngIf="showAlert">
-    Correo o contraseña incorrecta
+    Email o contraseña incorrecta
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
@@ -12,10 +13,12 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   user: User;
   showAlert: boolean;
-
+  showProgress: boolean;
+  buttonEnabled: boolean;
   constructor(
     private formBuilder: FormBuilder,
-    private firebaseAuth: FirebaseAuthService
+    private firebaseAuth: FirebaseAuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -23,15 +26,24 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+
+    this.buttonEnabled = this.formLogin.invalid;
   }
 
   send(): any {
-    console.log('Email: ' + this.email.value + ', Pass:' + this.password.value);
+    this.showProgress = true;
     this.firebaseAuth
       .login(this.email.value, this.password.value)
       .subscribe((user) => {
         this.user = user;
-        this.showAlert = !user.userSession.isValidUser;
+        if (user.userSession.isValidUser) {
+          //TODO: Saltar al dashboard
+          this.showAlert = false;
+          this.router.navigate(['dashboard']);
+        } else {
+          this.showAlert = true;
+        }
+        this.showProgress = false;
       });
   }
 
