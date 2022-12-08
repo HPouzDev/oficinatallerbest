@@ -13,6 +13,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AppRoutingModule } from './app.routing.module';
+import { SCcontrolComponent } from './components/sccontrol/sccontrol.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { AppRoutingModule } from './app.routing.module';
     LoginComponent,
     DashboardComponent,
     NavbarComponent,
+    SCcontrolComponent,
   ],
   bootstrap: [AppComponent],
 })
