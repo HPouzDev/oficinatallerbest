@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { User } from '../../models/user';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
 @Component({
@@ -8,8 +9,10 @@ import { FirebaseAuthService } from '../../services/firebase-auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  public formLogin: FormGroup;
-  isVisibleAlertErrorLogin: boolean = false;
+  formLogin: FormGroup;
+  user: User;
+  showAlert: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private firebaseAuth: FirebaseAuthService
@@ -23,12 +26,13 @@ export class LoginComponent implements OnInit {
   }
 
   send(): any {
-    /*console.log('Email: ' + this.email.value + ', Pass:' + this.password.value);
-    this.firebaseAuth.login(
-      this.email.value,
-      this.password.value,
-      this.isVisibleAlertErrorLogin
-    );*/
+    console.log('Email: ' + this.email.value + ', Pass:' + this.password.value);
+    this.firebaseAuth
+      .login(this.email.value, this.password.value)
+      .subscribe((user) => {
+        this.user = user;
+        this.showAlert = !user.userSession.isValidUser;
+      });
   }
 
   get email() {

@@ -31,9 +31,6 @@
         <hr />
         <div class="d-grid gap-2">
           <button
-            routerLink="/dashboard"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
             type="submit"
             class="btn btn-primary"
             [disabled]="formLogin.invalid"
@@ -44,7 +41,7 @@
       </form>
     </div>
   </div>
-  <div class="alert alert-danger" role="alert" *ngIf="isVisibleAlertErrorLogin">
+  <div class="alert alert-danger" role="alert" *ngIf="showAlert">
     Correo o contraseña incorrecta
   </div>
 </div>
