@@ -12,12 +12,14 @@ import { LoginComponent } from './components/login/login.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     RouterModule.forRoot([

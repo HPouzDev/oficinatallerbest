@@ -4,7 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [LoginComponent, DashboardComponent],
+  declarations: [],
   imports: [
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
