@@ -6,11 +6,12 @@ import { environment } from '../environments/environment';
 
 //COMPONENTS
 import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 //FIREBASE
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
@@ -22,7 +23,12 @@ import { AppRoutingModule } from './app.routing.module';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   ],
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    NavbarComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
