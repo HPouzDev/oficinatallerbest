@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
   }
 
   send(): any {
-    console.log('Email: ' + this.email.value + ', Pass:' + this.password.value);
+    /*console.log('Email: ' + this.email.value + ', Pass:' + this.password.value);
     this.firebaseAuth.login(
       this.email.value,
       this.password.value,
       this.isVisibleAlertErrorLogin
-    );
+    );*/
   }
 
   get email() {
