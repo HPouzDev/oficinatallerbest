@@ -1,10 +1,4 @@
 import { Component } from '@angular/core';
-import { DecimalPipe, NgFor } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import {
-  NgbPaginationModule,
-  NgbTypeaheadModule,
-} from '@ng-bootstrap/ng-bootstrap';
 
 interface Country {
   id?: number;
@@ -97,14 +91,6 @@ const COUNTRIES: Country[] = [
 
 @Component({
   selector: 'app-sccontrol',
-  standalone: true,
-  imports: [
-    DecimalPipe,
-    NgFor,
-    FormsModule,
-    NgbTypeaheadModule,
-    NgbPaginationModule,
-  ],
   templateUrl: './sccontrol.component.html',
   styleUrls: ['./sccontrol.component.css'],
 })

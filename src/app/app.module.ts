@@ -16,6 +16,12 @@ import { AppRoutingModule } from './app.routing.module';
 import { SCcontrolComponent } from './components/sccontrol/sccontrol.component';
 import { TabbarComponent } from './components/tabbar/tabbar.component';
 
+import { DecimalPipe, NgFor } from '@angular/common';
+import {
+  NgbPaginationModule,
+  NgbTypeaheadModule,
+} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,12 +31,18 @@ import { TabbarComponent } from './components/tabbar/tabbar.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     TabbarComponent,
+    DecimalPipe,
+    NgFor,
+    FormsModule,
+    NgbTypeaheadModule,
+    NgbPaginationModule,
   ],
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
     NavbarComponent,
+    SCcontrolComponent,
   ],
   bootstrap: [AppComponent],
 })
