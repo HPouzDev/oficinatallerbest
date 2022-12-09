@@ -27,13 +27,13 @@ import { SCcontrolComponent } from './components/sccontrol/sccontrol.component';
     provideAuth(() => getAuth()),
     TabbarComponent,
     SccontrolltableComponent,
+    SCcontrolComponent,
   ],
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
     NavbarComponent,
-    SCcontrolComponent,
   ],
   bootstrap: [AppComponent],
 })
