@@ -1,53 +1,47 @@
-import { AsyncPipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
-import { Component, QueryList, ViewChildren } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { DecimalPipe, NgFor } from '@angular/common';
 
-import { Country } from './country';
-import { CountryService } from './country.service';
-import { NgbdSortableHeader, SortEvent } from './sortable.directive';
-import { FormsModule } from '@angular/forms';
-import {
-  NgbPaginationModule,
-  NgbTypeaheadModule,
-} from '@ng-bootstrap/ng-bootstrap';
+interface Country {
+  name: string;
+  flag: string;
+  area: number;
+  population: number;
+}
+
+const COUNTRIES: Country[] = [
+  {
+    name: 'Russia',
+    flag: 'f/f3/Flag_of_Russia.svg',
+    area: 17075200,
+    population: 146989754,
+  },
+  {
+    name: 'Canada',
+    flag: 'c/cf/Flag_of_Canada.svg',
+    area: 9976140,
+    population: 36624199,
+  },
+  {
+    name: 'United States',
+    flag: 'a/a4/Flag_of_the_United_States.svg',
+    area: 9629091,
+    population: 324459463,
+  },
+  {
+    name: 'China',
+    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
+    area: 9596960,
+    population: 1409517397,
+  },
+];
 
 @Component({
   selector: 'app-sccontrolltable',
   standalone: true,
-  imports: [
-    NgFor,
-    DecimalPipe,
-    FormsModule,
-    AsyncPipe,
-    NgbTypeaheadModule,
-    NgbdSortableHeader,
-    NgbPaginationModule,
-    NgIf,
-  ],
+  imports: [NgFor, DecimalPipe],
   templateUrl: './sccontrolltable.component.html',
   styleUrls: ['./sccontrolltable.component.css'],
-  providers: [CountryService, DecimalPipe],
 })
 export class SccontrolltableComponent {
-  countries$: Observable<Country[]>;
-  total$: Observable<number>;
-
-  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
-
-  constructor(public service: CountryService) {
-    this.countries$ = service.countries$;
-    this.total$ = service.total$;
-  }
-
-  onSort({ column, direction }: SortEvent) {
-    // resetting other headers
-    this.headers.forEach((header) => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-    });
-
-    this.service.sortColumn = column;
-    this.service.sortDirection = direction;
-  }
+  countries = COUNTRIES;
 }
