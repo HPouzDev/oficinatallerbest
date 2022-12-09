@@ -1,4 +1,4 @@
-export interface CranePart {
+export interface Country {
   id: number;
   name: string;
   flag: string;

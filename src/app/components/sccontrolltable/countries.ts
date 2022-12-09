@@ -1,6 +1,6 @@
-import { CranePart } from './cranePart';
+import { Country } from './country';
 
-export const CRANEPARTS: CranePart[] = [
+export const COUNTRIES: Country[] = [
   {
     id: 1,
     name: 'Russia',
