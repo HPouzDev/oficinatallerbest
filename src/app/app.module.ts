@@ -14,6 +14,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AppRoutingModule } from './app.routing.module';
 import { SCcontrolComponent } from './components/sccontrol/sccontrol.component';
+import { TabbarComponent } from './components/tabbar/tabbar.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { SCcontrolComponent } from './components/sccontrol/sccontrol.component';
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    TabbarComponent,
   ],
   declarations: [
     AppComponent,
