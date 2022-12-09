@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SccontrolltableComponent } from '../sccontrolltable/sccontrolltable.component';
 
 @Component({
   selector: 'app-sccontrol',

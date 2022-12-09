@@ -14,13 +14,14 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AppRoutingModule } from './app.routing.module';
 import { SCcontrolComponent } from './components/sccontrol/sccontrol.component';
-import { SccontrolltableComponent } from './components/sccontrolltable/sccontrolltable.component';
+
 import { AsyncPipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
 import { NgbdSortableHeader } from './components/sccontrolltable/sortable.directive';
 import {
   NgbPaginationModule,
   NgbTypeaheadModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { SccontrolltableComponent } from './components/sccontrolltable/sccontrolltable.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import {
     NgbdSortableHeader,
     NgbPaginationModule,
     NgIf,
+    SccontrolltableComponent,
   ],
   declarations: [
     AppComponent,
@@ -45,7 +47,6 @@ import {
     DashboardComponent,
     NavbarComponent,
     SCcontrolComponent,
-    SccontrolltableComponent,
   ],
   bootstrap: [AppComponent],
 })
