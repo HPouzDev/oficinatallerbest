@@ -1,100 +1,43 @@
+import { AsyncPipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Country } from './country';
+import { CountryService } from './country.service';
+import { NgbdSortableHeader, SortEvent } from './sortable.directive';
+import { FormsModule } from '@angular/forms';
 import {
-  Component,
-  Directive,
-  EventEmitter,
-  Input,
-  Output,
-  QueryList,
-  ViewChildren,
-} from '@angular/core';
-import { DecimalPipe, NgFor } from '@angular/common';
-
-interface Country {
-  id: number;
-  name: string;
-  flag: string;
-  area: number;
-  population: number;
-}
-
-const COUNTRIES: Country[] = [
-  {
-    id: 1,
-    name: 'Russia',
-    flag: 'f/f3/Flag_of_Russia.svg',
-    area: 17075200,
-    population: 146989754,
-  },
-  {
-    id: 2,
-    name: 'Canada',
-    flag: 'c/cf/Flag_of_Canada.svg',
-    area: 9976140,
-    population: 36624199,
-  },
-  {
-    id: 3,
-    name: 'United States',
-    flag: 'a/a4/Flag_of_the_United_States.svg',
-    area: 9629091,
-    population: 324459463,
-  },
-  {
-    id: 4,
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397,
-  },
-];
-
-export type SortColumn = keyof Country | '';
-export type SortDirection = 'asc' | 'desc' | '';
-const rotate: { [key: string]: SortDirection } = {
-  asc: 'desc',
-  desc: '',
-  '': 'asc',
-};
-
-const compare = (v1: string | number, v2: string | number) =>
-  v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
-
-export interface SortEvent {
-  column: SortColumn;
-  direction: SortDirection;
-}
-
-@Directive({
-  selector: 'th[sortable]',
-  standalone: true,
-  host: {
-    '[class.asc]': 'direction === "asc"',
-    '[class.desc]': 'direction === "desc"',
-    '(click)': 'rotate()',
-  },
-})
-export class NgbdSortableHeader {
-  @Input() sortable: SortColumn = '';
-  @Input() direction: SortDirection = '';
-  @Output() sort = new EventEmitter<SortEvent>();
-
-  rotate() {
-    this.direction = rotate[this.direction];
-    this.sort.emit({ column: this.sortable, direction: this.direction });
-  }
-}
+  NgbPaginationModule,
+  NgbTypeaheadModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sccontrolltable',
   standalone: true,
-  imports: [DecimalPipe, NgFor, NgbdSortableHeader],
   templateUrl: './sccontrolltable.component.html',
   styleUrls: ['./sccontrolltable.component.css'],
+  imports: [
+    NgFor,
+    DecimalPipe,
+    FormsModule,
+    AsyncPipe,
+    NgbTypeaheadModule,
+    NgbdSortableHeader,
+    NgbPaginationModule,
+    NgIf,
+  ],
+  providers: [CountryService, DecimalPipe],
 })
 export class SccontrolltableComponent {
-  countries = COUNTRIES;
+  countries$: Observable<Country[]>;
+  total$: Observable<number>;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+
+  constructor(public service: CountryService) {
+    this.countries$ = service.countries$;
+    this.total$ = service.total$;
+  }
 
   onSort({ column, direction }: SortEvent) {
     // resetting other headers
@@ -104,14 +47,7 @@ export class SccontrolltableComponent {
       }
     });
 
-    // sorting countries
-    if (direction === '' || column === '') {
-      this.countries = COUNTRIES;
-    } else {
-      this.countries = [...COUNTRIES].sort((a, b) => {
-        const res = compare(a[column], b[column]);
-        return direction === 'asc' ? res : -res;
-      });
-    }
+    this.service.sortColumn = column;
+    this.service.sortDirection = direction;
   }
 }
