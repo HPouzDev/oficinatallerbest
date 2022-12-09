@@ -21,6 +21,7 @@ import {
   NgbPaginationModule,
   NgbTypeaheadModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { SccontrolltableComponent } from './components/sccontrolltable/sccontrolltable.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import {
     FormsModule,
     NgbTypeaheadModule,
     NgbPaginationModule,
+    SccontrolltableComponent,
   ],
   declarations: [
     AppComponent,
