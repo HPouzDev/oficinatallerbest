@@ -14,14 +14,13 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AppRoutingModule } from './app.routing.module';
 import { SCcontrolComponent } from './components/sccontrol/sccontrol.component';
-import { TabbarComponent } from './components/tabbar/tabbar.component';
-
-import { DecimalPipe, NgFor } from '@angular/common';
+import { SccontrolltableComponent } from './components/sccontrolltable/sccontrolltable.component';
+import { AsyncPipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { NgbdSortableHeader } from './components/sccontrolltable/sortable.directive';
 import {
   NgbPaginationModule,
   NgbTypeaheadModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { SccontrolltableComponent } from './components/sccontrolltable/sccontrolltable.component';
 
 @NgModule({
   imports: [
@@ -31,13 +30,14 @@ import { SccontrolltableComponent } from './components/sccontrolltable/sccontrol
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    TabbarComponent,
-    DecimalPipe,
     NgFor,
+    DecimalPipe,
     FormsModule,
+    AsyncPipe,
     NgbTypeaheadModule,
+    NgbdSortableHeader,
     NgbPaginationModule,
-    SccontrolltableComponent,
+    NgIf,
   ],
   declarations: [
     AppComponent,
@@ -45,6 +45,7 @@ import { SccontrolltableComponent } from './components/sccontrolltable/sccontrol
     DashboardComponent,
     NavbarComponent,
     SCcontrolComponent,
+    SccontrolltableComponent,
   ],
   bootstrap: [AppComponent],
 })

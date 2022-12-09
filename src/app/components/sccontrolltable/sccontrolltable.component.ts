@@ -13,17 +13,6 @@ import {
 
 @Component({
   selector: 'app-sccontrolltable',
-  standalone: true,
-  imports: [
-    NgFor,
-    DecimalPipe,
-    FormsModule,
-    AsyncPipe,
-    NgbTypeaheadModule,
-    NgbdSortableHeader,
-    NgbPaginationModule,
-    NgIf,
-  ],
   templateUrl: './sccontrolltable.component.html',
   providers: [CountryService, DecimalPipe],
 })
