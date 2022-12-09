@@ -1,12 +1,20 @@
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
 import { Injectable, PipeTransform } from '@angular/core';
 
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  of,
+  Subject,
+  debounceTime,
+  delay,
+  switchMap,
+  tap,
+} from 'rxjs';
 
 import { Country } from './country';
 import { COUNTRIES } from './countries';
 import { DecimalPipe } from '@angular/common';
-import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { SortColumn, SortDirection } from './sortable.directive';
 
 interface SearchResult {
