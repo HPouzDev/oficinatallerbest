@@ -1,130 +1,48 @@
-<div class="card">
-  <div class="card-header">Revisión SC - Neumáticos y llantas</div>
-  <div class="card-body">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">ID</th>
-          <th scope="col">SC</th>
-          <th scope="col">Tipo</th>
-          <th scope="col">Horas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="table-danger">
-          <th scope="row">1</th>
-          <td>1022N14623</td>
-          <td>SC-4</td>
-          <td>Neumático</td>
-          <td>1192</td>
-        </tr>
-        <tr class="table-warning">
-          <th scope="row">2</th>
-          <td>0919N19612</td>
-          <td>SC-6</td>
-          <td>Neumático</td>
-          <td>898</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>0720N10972</td>
-          <td>SC-2</td>
-          <td>Llantas</td>
-          <td>678</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>0720N10972</td>
-          <td>SC-2</td>
-          <td>Llantas</td>
-          <td>564</td>
-        </tr>
-        <tr>
-          <th scope="row">5</th>
-          <td>0720N10972</td>
-          <td>SC-2</td>
-          <td>Neumáticos</td>
-          <td>456</td>
-        </tr>
-        <tr>
-          <th scope="row">6</th>
-          <td>0720N10972</td>
-          <td>SC-2</td>
-          <td>Neumáticos</td>
-          <td>456</td>
-        </tr>
-        <tr>
-          <th scope="row">7</th>
-          <td>0720N10972</td>
-          <td>SC-2</td>
-          <td>Llantas</td>
-          <td>378</td>
-        </tr>
-        <tr>
-          <th scope="row">8</th>
-          <td>0720N10972</td>
-          <td>SC-2</td>
-          <td>Llantas</td>
-          <td>378</td>
-        </tr>
-        <tr>
-          <th scope="row">9</th>
-          <td>0720N10972</td>
-          <td>SC-2</td>
-          <td>Neumáticos</td>
-          <td>290</td>
-        </tr>
-        <tr>
-          <th scope="row">10</th>
-          <td>0720N10972</td>
-          <td>SC-2</td>
-          <td>Llantas</td>
-          <td>234</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
 <table class="table table-striped">
-<thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Country</th>
-    <th scope="col">Area</th>
-    <th scope="col">Population</th>
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let country of countries">
-    <th scope="row">{{ country.id }}</th>
-    <td>
-      <img
-        [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
-        class="me-2"
-        style="width: 20px"
-      />
-      {{ country.name }}
-    </td>
-    <td>{{ country.area | number}}</td>
-    <td>{{ country.population | number }}</td>
-  </tr>
-</tbody>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Country</th>
+      <th scope="col">Area</th>
+      <th scope="col">Population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of countries">
+      <th scope="row">{{ country.id }}</th>
+      <td>
+        <img
+          [src]="
+            'https://upload.wikimedia.org/wikipedia/commons/' + country.flag
+          "
+          class="me-2"
+          style="width: 20px"
+        />
+        {{ country.name }}
+      </td>
+      <td>{{ country.area | number }}</td>
+      <td>{{ country.population | number }}</td>
+    </tr>
+  </tbody>
 </table>
 
 <div class="d-flex justify-content-between p-2">
-<ngb-pagination
-  [collectionSize]="collectionSize"
-  [(page)]="page"
-  [pageSize]="pageSize"
-  (pageChange)="refreshCountries()"
->
-</ngb-pagination>
+  <ngb-pagination
+    [collectionSize]="collectionSize"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    (pageChange)="refreshCountries()"
+  >
+  </ngb-pagination>
 
-<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
-  <option [ngValue]="2">2 items per page</option>
-  <option [ngValue]="4">4 items per page</option>
-  <option [ngValue]="6">6 items per page</option>
-</select>
+  <select
+    class="form-select"
+    style="width: auto"
+    [(ngModel)]="pageSize"
+    (ngModelChange)="refreshCountries()"
+  >
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="4">4 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+  </select>
 </div>

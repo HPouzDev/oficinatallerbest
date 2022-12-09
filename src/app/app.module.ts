@@ -25,7 +25,6 @@ import { TabbarComponent } from './components/tabbar/tabbar.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     TabbarComponent,
-    SCcontrolComponent,
   ],
   declarations: [
     AppComponent,
