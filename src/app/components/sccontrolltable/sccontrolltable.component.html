@@ -1,5 +1,6 @@
 <div class="card">
   <div class="card-body">
+    <img src="assets/img/2.jpg" />
     <form>
       <div class="mb-3 row">
         <label
@@ -33,28 +34,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let country of craneParts$ | async">
-            <th scope="row">{{ country.id }}</th>
+          <tr *ngFor="let cranePart of craneParts$ | async">
+            <th scope="row">{{ cranePart.id }}</th>
             <td>
               <ngb-highlight
-                [result]="country.name"
+                [result]="cranePart.name"
                 [term]="service.searchTerm"
               ></ngb-highlight>
             </td>
             <td>
               <img
-                [src]="'https://upload.wikimedia.org/wikipedia/commons/'"
+                src="assets/icons/typesCranePart/2.png"
                 class="me-2"
                 style="width: 20px"
+                alt=""
               />
               <ngb-highlight
-                [result]="country.type | number"
+                hidden
+                [result]="cranePart.type | number"
                 [term]="service.searchTerm"
               ></ngb-highlight>
             </td>
             <td>
               <ngb-highlight
-                [result]="country.hour | number"
+                [result]="cranePart.hour | number"
                 [term]="service.searchTerm"
               ></ngb-highlight>
             </td>
