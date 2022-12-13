@@ -51,6 +51,7 @@ function sort(
 function matches(craneParts: CranePart, term: string, pipe: PipeTransform) {
   return (
     craneParts.name.toLowerCase().includes(term.toLowerCase()) ||
+    craneParts.scname.toLowerCase().includes(term.toLowerCase()) ||
     pipe.transform(craneParts.type).includes(term) ||
     pipe.transform(craneParts.hour).includes(term)
   );

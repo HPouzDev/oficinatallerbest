@@ -25,7 +25,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col" sortable="scid" (sort)="onSort($event)">SC-ID</th>
+            <th scope="col" sortable="scname" (sort)="onSort($event)">SC-ID</th>
             <th scope="col" sortable="name" (sort)="onSort($event)">
               Identificador
             </th>
@@ -38,7 +38,7 @@
             <th scope="row">{{ cranePart.id }}</th>
             <td>
               <ngb-highlight
-                [result]="cranePart.scid"
+                [result]="cranePart.scname"
                 [term]="service.searchTerm"
               ></ngb-highlight>
             </td>
