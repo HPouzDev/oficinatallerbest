@@ -25,6 +25,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col" sortable="scid" (sort)="onSort($event)">SC-ID</th>
             <th scope="col" sortable="name" (sort)="onSort($event)">
               Identificador
             </th>
@@ -35,6 +36,12 @@
         <tbody>
           <tr *ngFor="let cranePart of craneParts$ | async">
             <th scope="row">{{ cranePart.id }}</th>
+            <td>
+              <ngb-highlight
+                [result]="cranePart.scid"
+                [term]="service.searchTerm"
+              ></ngb-highlight>
+            </td>
             <td>
               <ngb-highlight
                 [result]="cranePart.name"
