@@ -26,38 +26,28 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col" sortable="name" (sort)="onSort($event)">ID</th>
-            <th scope="col" sortable="area" (sort)="onSort($event)">Type</th>
-            <th scope="col" sortable="population" (sort)="onSort($event)">
-              Horas
-            </th>
+            <th scope="col" sortable="type" (sort)="onSort($event)">Type</th>
+            <th scope="col" sortable="hour" (sort)="onSort($event)">Horas</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let country of countries$ | async">
-            <th scope="row">{{ country.id }}</th>
+          <tr *ngFor="let cranePart of craneParts$ | async">
+            <th scope="row">{{ cranePart.id }}</th>
             <td>
-              <img
-                [src]="
-                  'https://upload.wikimedia.org/wikipedia/commons/' +
-                  country.flag
-                "
-                class="me-2"
-                style="width: 20px"
-              />
               <ngb-highlight
-                [result]="country.name"
+                [result]="cranePart.name"
                 [term]="service.searchTerm"
               ></ngb-highlight>
             </td>
             <td>
               <ngb-highlight
-                [result]="country.area | number"
+                [result]="cranePart.type | number"
                 [term]="service.searchTerm"
               ></ngb-highlight>
             </td>
             <td>
               <ngb-highlight
-                [result]="country.population | number"
+                [result]="cranePart.hour | number"
                 [term]="service.searchTerm"
               ></ngb-highlight>
             </td>

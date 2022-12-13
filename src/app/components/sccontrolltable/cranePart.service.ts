@@ -1,16 +1,24 @@
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
 import { Injectable, PipeTransform } from '@angular/core';
 
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  of,
+  Subject,
+  debounceTime,
+  delay,
+  switchMap,
+  tap,
+} from 'rxjs';
 
-import { Country } from './country';
-import { COUNTRIES } from './countries';
 import { DecimalPipe } from '@angular/common';
-import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { SortColumn, SortDirection } from './sortable.directive';
+import { CranePart } from './cranePart';
+import { CRANEPARTS } from './craneParts';
 
 interface SearchResult {
-  countries: Country[];
+  craneParts: CranePart[];
   total: number;
 }
 
@@ -26,33 +34,33 @@ const compare = (v1: string | number, v2: string | number) =>
   v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
 function sort(
-  countries: Country[],
+  craneParts: CranePart[],
   column: SortColumn,
   direction: string
-): Country[] {
+): CranePart[] {
   if (direction === '' || column === '') {
-    return countries;
+    return craneParts;
   } else {
-    return [...countries].sort((a, b) => {
+    return [...craneParts].sort((a, b) => {
       const res = compare(a[column], b[column]);
       return direction === 'asc' ? res : -res;
     });
   }
 }
 
-function matches(country: Country, term: string, pipe: PipeTransform) {
+function matches(craneParts: CranePart, term: string, pipe: PipeTransform) {
   return (
-    country.name.toLowerCase().includes(term.toLowerCase()) ||
-    pipe.transform(country.area).includes(term) ||
-    pipe.transform(country.population).includes(term)
+    craneParts.name.toLowerCase().includes(term.toLowerCase()) ||
+    pipe.transform(craneParts.type).includes(term) ||
+    pipe.transform(craneParts.hour).includes(term)
   );
 }
 
 @Injectable({ providedIn: 'root' })
-export class CountryService {
+export class CranePartService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
-  private _countries$ = new BehaviorSubject<Country[]>([]);
+  private _craneParts$ = new BehaviorSubject<CranePart[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
 
   private _state: State = {
@@ -73,15 +81,15 @@ export class CountryService {
         tap(() => this._loading$.next(false))
       )
       .subscribe((result) => {
-        this._countries$.next(result.countries);
+        this._craneParts$.next(result.craneParts);
         this._total$.next(result.total);
       });
 
     this._search$.next();
   }
 
-  get countries$() {
-    return this._countries$.asObservable();
+  get craneParts$() {
+    return this._craneParts$.asObservable();
   }
   get total$() {
     return this._total$.asObservable();
@@ -125,19 +133,19 @@ export class CountryService {
       this._state;
 
     // 1. sort
-    let countries = sort(COUNTRIES, sortColumn, sortDirection);
+    let craneParts = sort(CRANEPARTS, sortColumn, sortDirection);
 
     // 2. filter
-    countries = countries.filter((country) =>
-      matches(country, searchTerm, this.pipe)
+    craneParts = craneParts.filter((cranePart) =>
+      matches(cranePart, searchTerm, this.pipe)
     );
-    const total = countries.length;
+    const total = craneParts.length;
 
     // 3. paginate
-    countries = countries.slice(
+    craneParts = craneParts.slice(
       (page - 1) * pageSize,
       (page - 1) * pageSize + pageSize
     );
-    return of({ countries, total });
+    return of({ craneParts, total });
   }
 }

@@ -2,14 +2,14 @@ import { AsyncPipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Country } from './country';
-import { CountryService } from './country.service';
 import { NgbdSortableHeader, SortEvent } from './sortable.directive';
 import { FormsModule } from '@angular/forms';
 import {
   NgbPaginationModule,
   NgbTypeaheadModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { CranePart } from './cranePart';
+import { CranePartService } from './cranePart.service';
 
 @Component({
   selector: 'app-sccontrolltable',
@@ -26,16 +26,16 @@ import {
     NgbPaginationModule,
     NgIf,
   ],
-  providers: [CountryService, DecimalPipe],
+  providers: [CranePartService, DecimalPipe],
 })
 export class SccontrolltableComponent {
-  countries$: Observable<Country[]>;
+  craneParts$: Observable<CranePart[]>;
   total$: Observable<number>;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public service: CountryService) {
-    this.countries$ = service.countries$;
+  constructor(public service: CranePartService) {
+    this.craneParts$ = service.craneParts$;
     this.total$ = service.total$;
   }
 
