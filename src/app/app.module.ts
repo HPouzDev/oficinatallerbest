@@ -14,9 +14,6 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AppRoutingModule } from './app.routing.module';
 import { TabbarComponent } from './components/tabbar/tabbar.component';
-import { SccontrolltableComponent } from './components/sccontrolltable/sccontrolltable.component';
-import { SCcontrolComponent } from './components/sccontrol/sccontrol.component';
-import { QCControlComponent } from './components/qccontrol/qccontrol.component';
 
 @NgModule({
   imports: [
