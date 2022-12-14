@@ -13,9 +13,9 @@ import {
 } from 'rxjs';
 
 import { DecimalPipe } from '@angular/common';
-import { SortColumn, SortDirection } from './sortable.directive';
-import { CranePart } from './cranePart';
-import { CRANEPARTS } from './craneParts';
+import { CranePart } from '../models/cranePart';
+import { SortColumn, SortDirection } from '../directives/sortable.directive';
+import { CRANEPARTS } from '../models/craneParts';
 
 interface SearchResult {
   craneParts: CranePart[];

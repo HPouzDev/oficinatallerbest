@@ -2,14 +2,17 @@ import { AsyncPipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { NgbdSortableHeader, SortEvent } from './sortable.directive';
 import { FormsModule } from '@angular/forms';
 import {
   NgbPaginationModule,
   NgbTypeaheadModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { CranePart } from './cranePart';
-import { CranePartService } from './cranePart.service';
+import { CranePart } from '../../models/cranePart';
+import { CranePartService } from '../../services/cranePart.service';
+import {
+  NgbdSortableHeader,
+  SortEvent,
+} from '../../directives/sortable.directive';
 
 @Component({
   selector: 'app-sccontrolltable',

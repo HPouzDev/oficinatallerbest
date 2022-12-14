@@ -1,5 +1,5 @@
 import { Directive, EventEmitter, Input, Output } from '@angular/core';
-import { CranePart } from './cranePart';
+import { CranePart } from '../models/cranePart';
 
 export type SortColumn = keyof CranePart | '';
 export type SortDirection = 'asc' | 'desc' | '';
