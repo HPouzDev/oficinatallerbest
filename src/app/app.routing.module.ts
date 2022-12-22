@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SCcontrolComponent } from './components/sccontrol/sccontrol.component';
-import { QCControlCardComponent } from './components/qccontrol-card/qccontrol-card.component';
+import { QCControlComponent } from './components/qccontrol/qccontrol.component';
 
 @NgModule({
   declarations: [],
@@ -20,7 +20,7 @@ import { QCControlCardComponent } from './components/qccontrol-card/qccontrol-ca
       },
       {
         path: 'qccontrol',
-        component: QCControlCardComponent,
+        component: QCControlComponent,
       },
       { path: '**', redirectTo: 'login' },
     ]),

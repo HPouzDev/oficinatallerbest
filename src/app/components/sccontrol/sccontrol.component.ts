@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { SccontrolltableComponent } from '../sccontrolltable/sccontrolltable.component';
 
@@ -9,6 +9,7 @@ import { SccontrolltableComponent } from '../sccontrolltable/sccontrolltable.com
   standalone: true,
   imports: [SccontrolltableComponent, NavbarComponent],
 })
-export class SCcontrolComponent {
+export class SCcontrolComponent implements OnInit {
   constructor() {}
+  ngOnInit() {}
 }
