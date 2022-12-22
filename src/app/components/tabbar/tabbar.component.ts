@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import { Hola } from '../../../assets/img/cranePart/Hola';
 import { QCControlComponent } from '../qccontrol/qccontrol.component';
 import { SCcontrolComponent } from '../sccontrol/sccontrol.component';
 
@@ -13,7 +13,11 @@ import { SCcontrolComponent } from '../sccontrol/sccontrol.component';
 })
 export class TabbarComponent implements OnInit {
   active = 1;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  goQc(): any {
+    this.router.navigate(['qccontrol']);
+  }
 }
