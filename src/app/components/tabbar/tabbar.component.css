@@ -1,12 +1,29 @@
-.container{
-margin: 1rem;
+h1,
+h5 {
+  margin: 1rem;
+}
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 
-.card {
-  max-width: 7rem;
-  align-items: center;
-  border-color: transparent;
+.tools {
+  width: 50%;
 }
+
 .card-img-top {
-  width: 5rem;
+  width: 6rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+@media (max-width: 400px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .tools {
+    width: 100%;
+  }
 }
