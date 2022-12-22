@@ -24,13 +24,9 @@ import { TabbarComponent } from './components/tabbar/tabbar.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     TabbarComponent,
-  ],
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    DashboardComponent,
     NavbarComponent,
   ],
+  declarations: [AppComponent, LoginComponent, DashboardComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
