@@ -20,4 +20,8 @@ export class TabbarComponent implements OnInit {
   goQc(): any {
     this.router.navigate(['qccontrol']);
   }
+
+  goSc(): any {
+    this.router.navigate(['sccontrol']);
+  }
 }
